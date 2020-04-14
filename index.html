@@ -2,16 +2,13 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
 
     <title>NR 17</title>
 
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" >
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -21,6 +18,31 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> 
+
+	<script src="https://use.fontawesome.com/a4982e048d.js"></script>
+
+	<script>
+
+
+
+
+		$(document).ready(function(){	
+				$.ajax({
+		            url: "http://192.168.0.106:5000/get_mouse_key_users/",
+		            type: "POST",
+		            contentType: "application/json",
+		            data: JSON.stringify({"message": ''})}).done(function(data){
+		            	console.log(data);
+		            	$.each(data , function(index, val) { 
+						  console.log(index, val)
+						  $("#selectName").append('<option value='+val[0]+'>'+val[1]+'</option>');
+						});
+		              
+		            });
+
+		});
+	</script>
+</head>
   <body>
 
     <div class="container-fluid">
@@ -37,36 +59,11 @@
 			</div>
 		</div>
 	</header>
+			
 	<div class="border-top my-3"></div>
 	<div class="row">
 		<div class="col-md-12">
-			<form role="form" class="form-inline">
-				<div class="form-group">
-					 <label for="exampleFormControlSelect1">
-						Usuário:  &nbsp
-					</label>
-					<select data-live-search="true" class="selectpicker">
-						<option>Ana</option>
-						<option>Paula</option>
-						<option>Jacson</option>
-						<option>Pedro</option>
-						<option>Carlos</option>
-					</select>
-				</div>
-
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">
-						Período: &nbsp  
-					</label>
-					<input type="text" name="datetimes"   style="width: 280px;" />
-					
-					
-				</div>
-				&nbsp &nbsp &nbsp
-				<button type="submit" class="btn btn-primary">
-					 Buscar
-				</button>
-			</form>
+			
 		</div>
 	</div>
 
@@ -74,6 +71,30 @@
 
 	<div class="row">
 		<div class="col-md-12">
+			<form id="main"  role="form" class="form-inline">
+				<div class="form-group">
+					 <label for="exampleFormControlSelect1">
+						Usuário:  &nbsp
+					</label>
+					<select data-live-search="true" class="selectpicker" id="selectName">
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">
+						Período: &nbsp  
+					</label>
+					<input type="text" name="datetimes"   style="width: 280px;" id="selectData" />
+					
+					
+				</div>
+				&nbsp &nbsp &nbsp
+				<a  class="btn btn-primary" id="enviar">
+					 Buscar
+				</a>
+				&nbsp &nbsp &nbsp
+				<a id="btn-print" class="fa fa-print fa-6" aria-hidden="true"></a>
+			</form>
 
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
@@ -275,9 +296,16 @@
 		</div>
 	</div>
 </div>
-
+<div id="results"></div>
 </body>
   <script>
+
+  	$( "#btn-print" ).click(function() {
+  		$("#myTabContent").show();
+    	window.print();
+		
+	});
+
   	$(function() {
   		
 		$('input[name="datetimes"]').daterangepicker({
@@ -314,15 +342,5 @@
 			}
 		});
 	});
-//  $(".data").datepicker({
-//     dateFormat: 'dd/mm/yy',
-//     dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-//     dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-//     dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
-//     monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-//     monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
-//     nextText: 'Próximo',
-//     prevText: 'Anterior'
-// });
   </script>
 </html>
