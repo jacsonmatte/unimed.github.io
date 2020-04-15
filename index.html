@@ -21,18 +21,15 @@
 
 	<script src="https://use.fontawesome.com/a4982e048d.js"></script>
 
+	
 	<script>
-
-
-
-
 		$(document).ready(function(){	
 				$.ajax({
 		            url: "http://192.168.0.106:5000/get_mouse_key_users/",
 		            type: "POST",
 		            contentType: "application/json",
 		            data: JSON.stringify({"message": ''})}).done(function(data){
-		            	console.log(data);
+		            	//console.log(data);
 		            	$.each(data , function(index, val) { 
 						  console.log(index, val)
 						  $("#selectName").append('<option value='+val[0]+'>'+val[1]+'</option>');
@@ -106,7 +103,7 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="dias-tab">
-					<table class="table">
+					<table class="table" id="horas">
 						<thead>
 							<tr>
 								<th>
@@ -133,52 +130,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									Pedro
-								</td>
-								<td>
-									DESKTOP-MTHHGDG
-								</td>
-								<td>
-									192.168.0.106
-								</td>
-								<td>
-									26/03/2020
-								</td>
-								<td>
-									13:00 - 14:00
-								</td>
-								<td>
-									500
-								</td>
-								<td>
-									900
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Pedro
-								</td>
-								<td>
-									DESKTOP-MTHHGDG
-								</td>
-								<td>
-									192.168.0.106
-								</td>
-								<td>
-									26/03/2020
-								</td>
-								<td>
-									14:00 - 15:00
-								</td>
-								<td>
-									300
-								</td>
-								<td>
-									400
-								</td>
-							</tr>
+							<tr id="remove"></tr>
 							
 						</tbody>
 					</table>
@@ -305,6 +257,44 @@
     	window.print();
 		
 	});
+
+
+		$("#enviar").click(function(){
+			var datatime = $("form").serializeArray();
+			temp = datatime[0]['value']
+			temp = temp.split("-")
+			temp.push($("#selectName").val())
+			// data_hour_init = temp[0]
+			// data_hour_last = temp[1]
+			// data_hour_init = data_hour_init.split(" ")
+			// data_hour_init = jQuery.grep(data_hour_init, function(value) {
+			//     return value != "";
+			// });
+			// data_hour_last = data_hour_last.split(" ")
+			// data_hour_last = jQuery.grep(data_hour_last, function(value) {
+			//     return value != "";
+			// });
+			// console.log(data_hour_init);
+			// console.log(data_hour_last)
+			$.ajax({
+	            url: "http://192.168.0.106:5000/get_monitor/",
+	            type: "POST",
+	            contentType: "application/json",
+	            data: JSON.stringify({"message": temp})}).done(function(data){
+	            	console.log(data);
+	            	$("#remove").remove()
+	            	$.each(data , function(index, val) { 
+					  console.log(index, val)
+					  $("#horas").append("<tr id='remove'>	<td>"+val[0]+"</td><td>"+val[1]+"</td><td>"+val[2]+"</td><td>"+val[3]+"</td><td>13:00 - 14:00</td><td>"+val[4]+"</td><td>"+val[5]+"</td></tr>");
+					});
+	               
+	            });
+
+		});
+
+
+
+
 
   	$(function() {
   		
