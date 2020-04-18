@@ -2,233 +2,34 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
-
-    
-
-    <title>NR 17</title>
-
-
-    <script src="js/jquery-3.4.1.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
-	<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
-
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/moment.min.js"></script>
-	
-	<script src="js/calendar.js"></script>
-	<script src="js/get_key_mouse.js"></script>
+  <title>UNIMED NR 17</title>
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.min.js"></script>
 </head>
-  <body>
+<body>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
 
-    <div class="container-fluid">
-	<header class="blog-header py-3">
-		<div class="row flex-nowrap justify-content-between align-items-center">
-			<div class="col-4 pt-1">
-				<img src="img/logo.png" width="100" height="50" alt="Responsive image">
-			</div>
-			<div class="col-4 text-center">
-				<a class="blog-header-logo text-dark" href="#">UNIMED NR 17</a>
-			</div>
-			<div class="col-4 d-flex justify-content-end align-items-center">		
-				<a class="btn btn-sm btn-outline-secondary" href="#">Sign out</a>
-			</div>
-		</div>
-	</header>
-			
-	<div class="border-top my-3"></div>
-	<div class="row">
-		<div class="col-md-12">
-			
-		</div>
-	</div>
+      <div class="fadeIn fourth">
+        UNIMED NR 17 - OCUPACIONAL </br>
+      </div>
+      <!-- Login Form -->
+      <form action="app.html">
+        <input type="text" id="login" class="fadeIn second" name="login_user" placeholder="email">
+        <input type="text" id="password" class="fadeIn third" name="login_password" placeholder="senha">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
 
-	<div class="border-top my-3"></div>
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Alterar Senha</a></br>
+        <a class="underlineHover" href="#">Novo Usuário</a>
+      </div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<form id="main"  role="form" class="form-inline">
-				<div class="form-group">
-					 <label for="exampleFormControlSelect1">
-						Usuário:  &nbsp
-					</label>
-					<select data-live-search="true" class="selectpicker" id="selectName">
-					</select>
-				</div>
-
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">
-						Período: &nbsp  
-					</label>
-					<input type="text" name="datetimes"   style="width: 280px;" id="selectData" />
-					
-					
-				</div>
-				&nbsp &nbsp &nbsp
-				<a  class="btn btn-primary" id="enviar">
-					 Buscar
-				</a>
-				&nbsp &nbsp &nbsp
-				<a id="btn-print" class="fa fa-print fa-6" aria-hidden="true"></a>
-			</form>
-
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" id="dias-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Horas</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="horas-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dias</a>
-				</li>
-			</ul>
-			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="dias-tab">
-					<table class="table" id="horas">
-						<thead>
-							<tr>
-								<th>
-									Usuário
-								</th>
-								<th>
-									Máquina
-								</th>
-								<th>
-									IP
-								</th>
-								<th>
-									Data
-								</th>
-								<th>
-									Hora
-								</th>
-								<th>
-									Teclas
-								</th>
-								<th>
-									Clicks
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr id="remove"></tr>
-							
-						</tbody>
-					</table>
-				</div>
-				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="horas-tab">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>
-									Usuário
-								</th>
-								<th>
-									Máquina
-								</th>
-								<th>
-									IP
-								</th>
-								<th>
-									Data
-								</th>
-								<th>
-									Teclas
-								</th>
-								<th>
-									Clicks
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									Pedro
-								</td>
-								<td>
-									DESKTOP-MTHHGDG
-								</td>
-								<td>
-									192.168.0.106
-								</td>
-								<td>
-									26/03/2020
-								</td>
-								<td>
-									10032
-								</td>
-								<td>
-									90012
-								</td>
-							</tr>
-							
-							<tr>
-								<td>
-									Pedro
-								</td>
-								<td>
-									DESKTOP-MTHHGDG
-								</td>
-								<td>
-									192.168.0.106
-								</td>
-								<td>
-									27/03/2020
-								</td>
-								<td>
-									2000
-								</td>
-								<td>
-									10012
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-
-			
-			<nav class="pagination">
-				<ul class="pagination">
-					<li class="page-item">
-						<a class="page-link" href="#">Previous</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">1</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">2</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">3</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">4</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">5</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">Next</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-12">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-		</div>
-		<div class="col-md-4">
-		</div>
-		<div class="col-md-4">
-		</div>
-	</div>
-</div>
-<div id="results"></div>
+    </div>
+  </div>
 </body>
-<script src="js/listUsers.js"></script>
 </html>
