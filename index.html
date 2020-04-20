@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8">
   <title>UNIMED NR 17</title>
+ 
+<script src="js/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/login.css">
   <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.min.js"></script>
+  
 </head>
 <body>
   <div class="wrapper fadeInDown">
@@ -17,10 +19,10 @@
         UNIMED NR 17 - OCUPACIONAL </br>
       </div>
       <!-- Login Form -->
-      <form action="app.html">
-        <input type="text" id="login" class="fadeIn second" name="login_user" placeholder="email">
-        <input type="text" id="password" class="fadeIn third" name="login_password" placeholder="senha">
-        <input type="submit" class="fadeIn fourth" value="Log In">
+      <form >
+        <input type="text" id="user_email" class="fadeIn second" name="user_email" placeholder="email" required>
+        <input type="password" id="login_password" class="fadeIn third" name="login_password" placeholder="senha">
+        <input type="text" class="fadeIn fourth" value="Log In" id="enviar_login">
       </form>
 
       <!-- Remind Passowrd -->
@@ -32,4 +34,69 @@
     </div>
   </div>
 </body>
+
+ <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+var form = $( "form" );
+form.validate({
+	onsubmit: false,
+  rules: {
+    user_email: {
+      required: true,
+      email: true
+    },
+    login_password: {
+      required: true,
+      minlength: 4
+    }
+  },
+  messages: {
+      user_email: "Entre com um email válido",
+      login_password: "Senha deve ter pelo menos 4 caracteres"
+  }
+
+
+});
+
+
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+	$("#enviar_login").click(function(){
+	var datatime = $("form").serializeArray();
+	console.log(datatime[0]['value']);
+	console.log(md5((datatime[1]['value'])));
+    datatime[1]['value'] = md5(datatime[1]['value'])+md5(datatime[0]['value'])+md5('unimed');
+
+
+
+	$.ajax({
+        url: "http://192.168.0.106:5000/post_validator_login/",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({"message": datatime})}).done(function(data){
+        	console.log(data)
+        	if (data) {
+        		$(location).attr('href', 'app.html');
+        	}
+
+           
+    });
+
+   
+
+    
+});
+</script>
+
 </html>

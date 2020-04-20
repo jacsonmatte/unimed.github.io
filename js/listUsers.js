@@ -45,23 +45,26 @@ $( "#btn-print" ).click(function() {
 $("#enviar").click(function(){
 	var datatime = $("form").serializeArray();
 	temp = datatime[0]['value']
+    
 	temp = temp.split("-")
 	temp.push($("#selectName").val())
 
 	
 
 	t_dias.clear()
-
+    t_horas.clear()
 
 	$.ajax({
-        url: "http://192.168.0.105:5000/get_monitor/",
+        url: "http://192.168.0.106:5000/get_monitor/",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"message": temp})}).done(function(data){
-        	console.log(data);
+        	console.log(data.length);
         	
+
+
         	if (data[0][0] != null){
-        		$(".remove").remove()
+        		
             	$.each(data , function(index, val) { 
 				  	console.log(index, val)
 				  	t_dias.row.add( [
@@ -77,7 +80,34 @@ $("#enviar").click(function(){
 				});
         	}
            
-        });
+    });
+
+    $.ajax({
+        url: "http://192.168.0.106:5000/get_monitor_dias/",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({"message": temp})}).done(function(data){
+            console.log(data.length);
+            
+
+
+            if (data[0][0] != null){
+                
+                $.each(data , function(index, val) { 
+                    console.log(index, val)
+                    t_horas.row.add( [
+                        val[0][0],
+                        val[0][1],
+                        val[0][2],
+                        val[0][3],
+                        val[0][4],
+                        val[0][5]
+                    ] ).draw();
+
+                });
+            }
+           
+    });
 
     
 });

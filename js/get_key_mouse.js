@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	$.ajax({
-        url: "http://192.168.0.105:5000/get_mouse_key_users/",
+        url: "http://192.168.0.106:5000/get_mouse_key_users/",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"message": ''})}).done(function(data){
