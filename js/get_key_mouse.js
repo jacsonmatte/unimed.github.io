@@ -1,5 +1,7 @@
 $(document).ready(function(){
-
+	if (md5(Cookies.get('logado')) != Cookies.get('valido')) {
+        $(location).attr('href', 'index.html');
+    }
 	$.ajax({
         url: "http://192.168.0.106:5000/get_mouse_key_users/",
         type: "POST",
@@ -10,6 +12,8 @@ $(document).ready(function(){
 			  console.log(index, val)
 			  $("#selectName").append('<option value='+val[0]+'>'+val[1]+'</option>');
 			});
+
+			
 			$("head").append('<link rel="stylesheet" type="text/css" href="css/daterangepicker.css" /> ');
 			$("head").append("<script type='text/javascript' src='js/daterangepicker.min.js'> <\/script>");
 				

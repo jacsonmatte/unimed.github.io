@@ -42,7 +42,17 @@ $( "#btn-print" ).click(function() {
 });
 
 
+$( "#sign_out" ).click(function() {
+   Cookies.remove('logado');
+   Cookies.remove('valido');
+   $(location).attr('href', 'index.html');     
+});
+
 $("#enviar").click(function(){
+
+    if (md5(Cookies.get('logado')) != Cookies.get('valido')) {
+        $(location).attr('href', 'index.html');
+    }
 	var datatime = $("form").serializeArray();
 	temp = datatime[0]['value']
     
