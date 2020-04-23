@@ -40,7 +40,7 @@ $("#new_user").click(function(){
   dataresetuser[3]['value'] = md5(dataresetuser[3]['value'])+md5(dataresetuser[1]['value'])+md5('unimed');
     
   $.ajax({
-        url: "http://192.168.0.106:5000/post_new_user/",
+        url: "http://192.168.4.200:5000/post_new_user/",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"message": dataresetuser})}).done(function(data){

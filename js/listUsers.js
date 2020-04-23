@@ -65,7 +65,7 @@ $("#enviar").click(function(){
     t_horas.clear()
 
 	$.ajax({
-        url: "http://192.168.0.106:5000/get_monitor/",
+        url: "http://192.168.4.200:5000/get_monitor/",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"message": temp})}).done(function(data){
@@ -93,7 +93,7 @@ $("#enviar").click(function(){
     });
 
     $.ajax({
-        url: "http://192.168.0.106:5000/get_monitor_dias/",
+        url: "http://192.168.4.200:5000/get_monitor_dias/",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"message": temp})}).done(function(data){

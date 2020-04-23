@@ -5,7 +5,7 @@ $("#enviar_login").click(function(){
     datatime[1]['value'] = md5(datatime[1]['value'])+md5(datatime[0]['value'])+md5('unimed');
     
 	$.ajax({
-        url: "http://192.168.0.106:5000/post_validator_login/",
+        url: "http://192.168.4.200:5000/post_validator_login/",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"message": datatime})}).done(function(data){

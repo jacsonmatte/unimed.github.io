@@ -42,7 +42,7 @@ $("#reset_password").click(function(){
   dataresetuser[3]['value'] = md5(dataresetuser[3]['value'])+md5(dataresetuser[0]['value'])+md5('unimed');
     
   $.ajax({
-        url: "http://192.168.0.106:5000/post_new_password/",
+        url: "http://192.168.4.200:5000/post_new_password/",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"message": dataresetuser})}).done(function(data){
