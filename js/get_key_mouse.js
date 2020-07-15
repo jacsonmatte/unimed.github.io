@@ -3,13 +3,11 @@ $(document).ready(function(){
         $(location).attr('href', 'index.html');
     }
 	$.ajax({
-        url: "http://192.168.4.200:5000/get_mouse_key_users/",
+        url: "http://192.168.0.106:5000/get_mouse_key_users/",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"message": ''})}).done(function(data){
-        	//console.log(data);
         	$.each(data , function(index, val) { 
-			  console.log(index, val)
 			  $("#selectName").append('<option value='+val[0]+'>'+val[1]+'</option>');
 			});
 
